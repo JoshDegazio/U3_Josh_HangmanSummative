@@ -1,0 +1,147 @@
+﻿<Window x:Class="U3_Josh_SummativeHangman.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:U3_Josh_SummativeHangman"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <StackPanel x:Name="Window">
+        <Grid x:Name="pg_Title"
+              Visibility="Visible">
+            <Label x:Name="lbl_Title"
+                   Content="HANGMAN SUPREME" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontFamily="Magneto" FontSize="22" FontWeight="Bold" />
+            <Button x:Name="btn_Play" Margin="0,37,0,-37"
+                    Click="click_Play"
+                    >
+                <Button.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </Button.Effect>
+            </Button>
+            <TextBox x:Name="inpt_Letters"
+                     Text="Enter an amount of letters here. (Ex: 5.) (Min 3, Max 6.)" Margin="0,123,0,-123"
+                     />
+            <Button x:Name="btn_SetLetters"
+                    Content="Set Amount of Letters" Margin="0,160,0,-160"
+                    Click="click_SetLetters"
+                    >
+                <Button.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </Button.Effect>
+            </Button>
+            <TextBlock x:Name="txt_WinCounter"
+                       Text="Games Won Of Hangman Supreme: " Margin="0,299,-0.333,-299.333"
+                       />
+        </Grid>
+        <Grid x:Name="pg_Play"
+              Visibility="Hidden" Margin="401,0,0,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="87*"/>
+                <ColumnDefinition Width="31*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btn_Exit"
+                    Click="click_Exit"
+                    Content="Exit" Margin="-402,-37,372.156,37"
+                    >
+                <Button.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </Button.Effect>
+            </Button>
+
+            <TextBox x:Name="inpt_GuessLtr"
+                Text="Input Your Guess Here (Ex: A)" Margin="-402,124,182.156,-123"
+            />
+            <Button x:Name="btn_Guess"
+                    Margin="-402,143,183.156,-143"
+                    Content="Enter Guess"
+                    Click="click_Guess"
+                >
+                <Button.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </Button.Effect>
+            </Button>
+
+            <Label x:Name="lbl_GuessOutput"
+                   Content="Guess Output" Margin="-379,169,372.156,-169" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="94"
+                   />
+            <TextBox x:Name="txt_GuessOutput" Margin="-402,189,339.156,-260"
+                     >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Label x:Name="lbl_ErrorOutput"
+                   Content="Error Output" Margin="-210,169,203.156,-169" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Width="94"
+                   />
+            <TextBox x:Name="txt_ErrorOutput" Margin="-247,189,184.156,-260"
+                     >
+                <TextBox.Effect>
+                    <DropShadowEffect Direction="1359"/>
+                </TextBox.Effect>
+            </TextBox>
+
+            <Canvas x:Name="can_Man" Margin="-97,-37,0.667,-260" >
+                <Line x:Name="Hang1" X1="100" X2="250" Y1="100" Y2="100" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-23" Canvas.Top="-61"
+                          />
+                <Line x:Name="Hang2" X1="100" X2="100" Y1="99" Y2="154" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-23" Canvas.Top="-61"
+                          />
+
+                <Ellipse x:Name="man_Head" Stroke="Black" StrokeThickness="3"
+                         Width="100"
+                         Height="100" Canvas.Left="31" Canvas.Top="89"
+                         Visibility="Hidden"/>
+                <Ellipse x:Name="man_Eye1" Stroke="Black" StrokeThickness="3"
+                         Width="25"
+                         Height="25" Canvas.Left="49" Canvas.Top="114"
+                         Visibility="Hidden"/>
+                <Ellipse x:Name="man_Eye2" Stroke="Black" StrokeThickness="3"
+                         Width="25"
+                         Height="25" Canvas.Left="89" Canvas.Top="114"
+                         Visibility="Hidden"/>
+                <Line x:Name="man_Mouth" X1="100" X2="150" Y1="50" Y2="50" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-44" Canvas.Top="114"
+                          Visibility="Hidden"/>
+                <Line x:Name="man_Body" X1="100" X2="100" Y1="100" Y2="150" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-17" Canvas.Top="89"
+                          Visibility="Hidden"/>
+                <Line x:Name="man_Leg1" X1="100" X2="125" Y1="150" Y2="200" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-17" Canvas.Top="89"
+                          Visibility="Hidden"/>
+                <Line x:Name="man_Leg2" X1="100" X2="75" Y1="150" Y2="200" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-17" Canvas.Top="89"
+                          Visibility="Hidden"/>
+                <Line x:Name="man_Arm1" X1="100" X2="125" Y1="125" Y2="125" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-17" Canvas.Top="89"
+                          Visibility="Hidden"/>
+                <Line x:Name="man_Arm2" X1="100" X2="75" Y1="125" Y2="125" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Left="-17" Canvas.Top="89"
+                          Visibility="Hidden"/>
+            </Canvas>
+            <Canvas x:Name="can_Word"  Margin="-402,5,203.156,-99">
+                <!-- <Line X1="5" X2="50" Y1="0" Y2="0" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/>
+                <Line X1="55" X2="100" Y1="0" Y2="0" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/>
+                <Line X1="105" X2="150" Y1="0" Y2="0" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/>
+                <Line X1="155" X2="200" Y1="0" Y2="0" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/>
+                <Line X1="205" X2="250" Y1="0" Y2="0" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/>
+                <Line X1="255" X2="300" Y1="50" Y2="50" Fill="Black" Stroke="Black" StrokeThickness="3" Canvas.Top="25"/> -->
+
+                <TextBlock x:Name="Letter_1"
+                           Text="" Canvas.Left="10" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+                <TextBlock x:Name="Letter_2"
+                           Text="" Canvas.Left="62" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+                <TextBlock x:Name="Letter_3"
+                           Text="" Canvas.Left="112" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+                <TextBlock x:Name="Letter_4"
+                           Text="" Canvas.Left="162" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+                <TextBlock x:Name="Letter_5"
+                           Text="" Canvas.Left="212" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+                <TextBlock x:Name="Letter_6"
+                           Text="" Canvas.Left="260" Height="25" Width="32" FontWeight="Bold" FontSize="20" TextAlignment="Center" Canvas.Top="25"
+                           />
+            </Canvas>
+        </Grid>
+    </StackPanel>
+</Window>
+
+<!-- -->
